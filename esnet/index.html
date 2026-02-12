@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #conteudo{
+        #conteudo {
             padding: 30px 0px;
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Exercicio HTML</h1>
     </header>
-    
+
     <nav>
         <a href wm-nav="teste.html">00 - teste</a>|
         <a href wm-nav="texto1.html">01 - testo1</a>|
         <a href wm-nav="texto2.html">02 - testo2</a>|
-        <a href wm-nav="listaalinhada">Lista-a-linhado</a>
+        <a href wm-nav="listaalinhada">Lista-a-linhado</a>|
+         <a href wm-nav="link.html">Primeiro link</a> 
+
+
     </nav>
     <section id="conteudo"></section>
     <footer>
@@ -28,13 +33,14 @@
     <script>
         document.querySelectorAll("a").forEach(link => {
             const conteudo = document.getElementById('conteudo')
-            link.onclick = function(e) {
+            link.onclick = function (e) {
                 e.preventDefault()
                 fetch(link.getAttribute("wm-nav"))
-                .then(resp => resp.text())
-                .then(html => conteudo.innerHTML = html)
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
             }
         })
     </script>
 </body>
+
 </html>
