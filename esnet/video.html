@@ -1,0 +1,53 @@
+<video id="Videodoprofessor" width="800" height="400" controls autoplay controlsList="nodownload">
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+
+</video>
+<div wm-progresso="Videodoprofessor" class="progresso">
+    <div></div>
+
+</div>
+
+<div>
+    <button wm-play="Videodoprofessor">Play</button>
+    <button wm-paue="Videodoprofessor">Pause</button>
+</div>
+
+<style>
+    .progresso{
+        height: 20px;
+        width: 500px;
+        border: solid 1px rgb(0, 247, 255);
+        margin: 20px;
+
+        
+    }
+    .progresso > div{
+        background-color: red;
+        color: aliceblue;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0px;
+    }
+</style>
+
+<script>
+    function consfigurarvideo(id){
+        const video = document.getElementById(id)
+        video.oncontextmenu = () => false
+
+        document.querySelector(`[wm-play=${id}]`).onclick = e => video.play()
+        document.querySelector(`[wm-paue=${id}]`).onclick = e => video.pause()
+
+        setInterval(() => {
+            const persentual = (video.currentTime / video.duration) * 100
+            const valorDiv = document.querySelector(`[wm-progresso=${id}] > div`)
+            valorDiv.style.width = `${persentual}%`
+            valorDiv.innerHTML = `${persentual.toFixed(1)}` 
+
+        }, 500)
+
+    }
+
+consfigurarvideo('Videodoprofessor')
+</script>

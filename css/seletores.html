@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Selectors</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        /* body > div / filho primeiro sera pego/*
+         p ~ ul / aplica o valor em todas ul */
+       /* #aninhado > div / filha da aninhada*/
+       /* #aninhado section / aqui pega o valor section dentro de uma div tipo isso*/
+
+       /* [feira=casa/ aqui pega o valor da class */
+        /* [feira~=empresa] / aqui pega valor da class e o relacionais a empresa tipo ispaso branco ai o restante da class tipo isso */
+        /* [feira*=sa] / aqui pega quem tem as letras que estao dentro da class o que tiber 's'e'a' vai pegar esses valores */
+        /* [feira*=asa] * aqui a mesma coisa/*
+         /* span:nth-child(1) / aqui pega o primeiro filho  */
+      
+         /* section > :nth-child(odd) / pegar o que som imparas  */
+        /* section > :nth-child(even) / valor pareces */
+         /* section > :nth-child(odd), ul, p / aqui tbm aplica esse falor para ul, p muito interesante */
+         /* section > span:nth-of-type(2) / Funciona a mesma ordem do outros mais aqui ta tipo espesificando o que ele ta querendo span o segundo que o segundo span */
+         section > span:nth-of-type(2){
+            color:aquamarine;
+            background-color:rgb(34, 228, 98)
+         }
+
+    </style>
+</head>
+
+<body>
+    <div class='tag'>
+        <div class='tag'>
+            <p class='tag'>1</p>
+            <ul class='tag' feira='casa'>
+                <li>Arroz</li>
+                <li>Feijão</li>
+            </ul>
+            <ul class='tag' feira='escritorio empresa'>
+                <li>Café</li>
+                <li>Água</li>
+            </ul>
+            <ol id='aprovados' class='tag'>
+                <li>Maria</li>
+                <li>Pedro</li>
+                <li>Ana</li>
+            </ol>
+            <div id='aninhado' class='tag'>
+                <div class="tag">
+                    <section class='tag nolabel'>
+                        <span class='tag'>1</span>
+                        <p class='tag'>2</p>
+                        <span class='tag'>3</span>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

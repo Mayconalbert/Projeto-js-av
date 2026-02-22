@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Anatomia CSS</title>
+    <style>
+        .selector {
+            color: blueviolet;
+            font-size: 30px;
+            text-align: center;
+            border: solid 2px rebeccapurple;
+            font-family: Helvetica, sans-serif;
+            /* Define as fonte da letras se nao carregar uma carrega outra*/
+            /*Função*/
+            width: calc(100% - 10px);
+            background-color: antiquewhite;
+        }
+
+        /* Usando pseudo class */
+        .selector:hover {
+            background-color: brown;
+        }
+
+        /* Usando pseudo elemento */
+        .selector::first-letter {
+            font-size: 60px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="selector">Conteúdo</div>
+</body>
+
+</html>
