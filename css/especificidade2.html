@@ -6,6 +6,26 @@
     <title>Especificidade CSS</title>
     <style>
         /* https://specificity.keegan.st/ */
+
+        /* Quem tem a ordem de especificidade maior */
+
+        body {
+            font-size: 40px;
+        }
+        div {
+            background-color: aqua;
+        }
+        div[wm-cor] {
+            background-color: rgb(129, 167, 173);
+        }
+        div.estilo {
+            background-color: blueviolet;
+        }
+        #unico1, #unico2 {
+            background-color: rgb(160, 139, 139);
+        }
+        div:hover, #unico1:hover{ background-color: blue;}
+
     </style>
 </head>
 

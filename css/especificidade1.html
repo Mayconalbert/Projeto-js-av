@@ -1,3 +1,46 @@
+<h2>Tabela de Especificidade CSS</h2>
+<table border="1" cellpadding="6" style="border-collapse:collapse;">
+    <tr>
+        <th>Tipo de seletor</th>
+        <th>Exemplo</th>
+        <th>Valor de especificidade</th>
+    </tr>
+    <tr>
+        <td>Inline style</td>
+        <td>style=""</td>
+        <td>1000</td>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>#meuId</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>Classe</td>
+        <td>.minhaClasse</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>Atributo</td>
+        <td>[type="text"]</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>Pseudo-classe</td>
+        <td>:hover</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>Elemento</td>
+        <td>p, h1, div</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>Pseudo-elemento</td>
+        <td>::before</td>
+        <td>1</td>
+    </tr>
+</table>
 <!DOCTYPE html>
 <html>
 
