@@ -5,7 +5,49 @@
     <meta charset="UTF-8">
     <title>Desafio Card</title>
     <style>
-        /* ... */
+       .curso {
+            float: left;
+             /* SE caso tirar o float, vai ficar um embaixo do outro, e se ussar display: inline-block, eles vom voltar pra for que tava com float, e se a imagem nao carregar, a caixa vai deser, a tem que usar a propriedade vertical-align: top, fisar no topo, uma forma de tratar. */
+            /* display: inline-block; */
+             /* vertical-align: top; */
+             font-family: verdana, sans-serif;
+            width: 260px ;
+            height: 300px;
+            border: solid 1px #ccc;
+            box-shadow: 0 4px 20px 0 rgba(0,0,0,0.3);
+            margin: 5px, 20px;
+            padding: 5px;
+       }
+       .curso img {
+            width: 100%;
+            height: 50%;
+       }
+       .curso-info {
+            padding: 10px;
+            height: 90px;
+            overflow: hidden;
+       }
+       .curso-info h4 {
+            font-size: 1.4em;
+            font-weight: 100;
+            margin: 0px;
+       }
+       .curso-preco { 
+            float: right;
+            padding: 10px;
+       }
+       .preco-de {
+            text-decoration: line-through;
+            color: red;
+
+       }
+       .preco-por {
+            color: green;
+            font-weight: bold;
+            font-size: 1.2em;
+
+       }
+
     </style>
 </head>
 
