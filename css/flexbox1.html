@@ -6,7 +6,56 @@
     <title>Flexbox #01</title>
     <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+        div {
+            border: solid 5px rgb(44, 60, 204);
+            font-size: 40px;
+            margin: 5px;
+        }
+        .big {
+            font-size: 1.5em;
+
+        }
+        .flex-container {
+            display: flex; 
+             flex-direction:column; /* coluna  */
+            flex-direction: column-reverse;
+            flex-direction: row-reverse;
+            flex-direction: row; /* Linha */
+            width: 50%;
+            flex-wrap: wrap; /* quebra de linha, se tiver mais itens do que o container suporta, ele quebra a linha,e se usar o wrap-reverse, ele quebra a linha de baixo pra cima, ou seja, os itens que sobraram vão pra linha de baixo, e os itens da linha de baixo vão pra linha de cima. */
+            flex-wrap: wrap-reverse;
+            height: 200px;
+            flex-flow: row wrap; 
+            flex-flow: column-reverse wrap;
+            flex-flow: row wrap; 
+
+            justify-content: flex-start;
+            justify-content: flex-end; /* alinha os intes no final do container, ou seja, da 
+            direita pra esquerda, ou de baixo pra cima, dependendo da direção do flex */
+            justify-content: center;
+            justify-content: space-around; /* espaço igual entre os itens, e o primeiro e o ultimo itens ficam colados nas bordas do container */
+            flex-direction: row-reverse;
+            justify-content: space-between; /* espaço igual entre os itens, e o primeiro e o ultimo itens ficam colados nas bordas do container */
+
+            /* Cros axis */
+            height: 400px;
+            align-items: stretch; /* estica os itens pra preencher o container, ou seja, os itens ficam com a mesma altura do container, e se usar o align-items: flex-start, os itens ficam alinhados no inicio do container, ou seja, da esquerda pra direita, ou de cima pra baixo, dependendo da direção do flex */
+            align-items: baseline; /*alinha os itens pela linha de base do texto, ou seja, os itens ficom alinhados pela linha de base do texto, e se usar o align-items: flex-end, os itens ficom alinhados no final do conteiner, ou seja, da direita pra esquerda, ou de baixo pra cima, dependendo da direção do flex */
+            align-items: flex-start; /* alinha os itens no incio do conteiner, ou seja, da esquerda pra direita, ou de cima pra baixo, dependendo da direção do flex */
+            align-items: flex-end; /* alinha os itens no final do conteiner, ou seja, da direita pra esquerda, ou de baixo pra cima, dependendo da direção do flex */
+            align-items: center; /*alinha os itens no centro */
+
+            /* Mais de uma linhas */
+
+            align-content: flex-start;
+            align-content: flex-end;
+            align-content: center;
+            align-content: space-around;/* espaço igual entre os itens, e a primeira e a ultima linha ficom coladas nas bordas do conteiner */
+            align-content: space-between; /* espaço igual entre os itens, e a primeira e a ultima linha ficam colocadas nas bordas do conteiner */
+            
+            
+
+        }
     </style>
 </head>
 
