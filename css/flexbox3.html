@@ -6,16 +6,44 @@
     <title>Flexbox #03</title>
     <link rel="stylesheet" href="css/tag.css">
     <style>
-        /* ... */
+        div {
+            border: solid 5px rgb(0, 60, 255);
+            font-size: 40px;
+
+        }
+        .flex-container div {
+            box-sizing: border-box;
+        }
+        .flex-container  {
+            display: flex;
+            flex-direction:row; /* Elemento vai crecer na linha*/
+            flex-direction:column; /* vai crece na coluna */
+
+        }
+        .flex-container div {
+            flex-basis: 100px; /* define o tamanho inicial do item, ou seja, o tamanho que ele vai ter antes de ser redimensionado pelo flex-frow ou pelo flex-shrink, e se usar o flex-basis: auto, o tamanho do item vai ser definido pelo seu conteudo, ou seja, o tamanho do item vai ser definido pelo seu conteudo, e se usar o flex-basis: 0, o tamanho do item vai ser definido pelo flex-grow, ou seja, o tamanho do item vai ser definido pelo flex-grow, e se usar o flex-basis: 100px, o tamanho do item vai ser definido pelo flex-basis, ou seja, o tamanho do item vai ser definido pelo flex-basis, e se usar o flex-basis: 100%, o tamanho do item vai ser definido pelo flex-basis, ou seja, o tamanho do item vai ser definido pelo flex-basis, e se usar o flex-basis: auto, o tamanho do item vai ser definido pelo seu conteudo, ou seja, o tamanho do item vai ser definido pelo seu conteudo */
+            /* width: 200px; */
+        }
+        .flex-container div:nth-child(4) {
+            flex: 3 6 100px;
+
+        }
+        .flex-container {
+            width: 300px;
+            width: 600px;
+        }
+
+
+
     </style>
 </head>
 
 <body>
     <div class="flex-container tag nolabel">
-        <div class="tag nolabel">1</div>
-        <div class="tag nolabel">2</div>
-        <div class="tag nolabel">3</div>
-        <div class="tag nolabel">4</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
     </div>
     <script src="js/tag.js"></script>
 </body>
