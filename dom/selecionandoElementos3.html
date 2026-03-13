@@ -31,7 +31,13 @@
         <button>Pesquisar</button>
     </form>
     <script>
-        // ...
+        console.log(document.froms)
+        console.log(document.froms[0])
+        console.log(document.getElementsByName('pesquisa'))
+        console.log(document.pesquisa)
+        console.log(document.pesquisa.q)
+        document.pesquisa.q.value = 'Linuxap Brasil'
+        console.log(document.pesquisa.hl.selectedIndex)
     </script>
 </body>
 
