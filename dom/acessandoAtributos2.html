@@ -17,7 +17,29 @@
         </ul>
     </div>
     <script>
-        // ...
+        const list = document.querySelector('div ul[destino="escritorio"]')
+        console.log('Elemento,............')
+        console.log('childNode', list.childNodes)
+        console.log('destino', list.destino)
+        console.log('getAttribute', list.getAttribute('destino'))
+        console.log('hasAttribute', list.hasAttribute('destino'))
+        list.set.getAttribute('destino', 'empresa')
+        list.set.getAttribute('status', 'aberto')
+        list.removeAttribute('destino')
+        console.log(list.dataset.urgencia)
+        list.dataset.urgencia = 4
+        console.log(list.getAttribute('data-urgencia'))
+    
+
+        // cuidado//
+
+        const label = document.querySelector('label')
+        console.log(label.for)
+        console.log(label.htmlFor)
+        console.log(label.getAttribute('for'))
+
+
+    
     </script>
 </body>
 
