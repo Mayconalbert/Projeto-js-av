@@ -62,16 +62,46 @@ function Barreiras(altura, largura, abertura, espaso, nodificarPonto ){
                 par.sortearAbertura()
             }
 
-            const meio =   largura / 2 
+            const meio = largura / 2 
             const cruzouoMeio = par.getx() + deslocamento >= meio 
                 && par.getx() < meio
         })
     }
 }
 
+function Passaro(alturaJogo){
+    let voando = false 
+    this.elemento = novoelemento('img', 'passaro')
+    this.elemento.src = 'imgs/passaro.png'
+
+    this.gety = () => parseInt(this.elemento.style.bottom.split('px')[0]) || 0
+    this.sety = y => this.elemento.style.bottom = `${y}px`
+
+    window.onkeydown = e => voando = true
+    window.onkeyup = e => voando = false 
+
+    this.animar = () => {
+        const novoY = this.gety() + (voando ? 8 : -5)
+        const alturaMaxima = alturaJogo - this.elemento.clientHeight    
+        if (novoY <= 0){
+            this.sety(0)
+        }else if (novoY >= alturaMaxima){
+            this.sety(alturaMaxima)
+
+        }else{
+            this.sety(novoY)
+        }
+    }
+    this.sety(alturaJogo / 2)
+}
+
 const barreiras = new Barreiras(700, 1200, 200, 400)
+const passaro = new Passaro(700)
 const areDojogo = document.querySelector('[wm-flappy]')
+
+areDojogo.appendChild(passaro.elemento)
 barreiras.pares.forEach(par => areDojogo.appendChild(par.elemento))
 setInterval(() => {
     barreiras.animar()
+    passaro.animar()
 }, 20)
