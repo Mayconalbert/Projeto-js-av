@@ -44,7 +44,7 @@
         formData.append(inputfile.name, inputfile.files[0])
 
         ajaxupload({
-            url: '/upload',
+            url: "/upload",
             formData: formData,
             progresso(data){
                 const progresso = document.querySelector('.progresso')
