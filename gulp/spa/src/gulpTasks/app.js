@@ -33,4 +33,7 @@ function appIMG() {
     return gulp.src('src/assets/imgs/**/*.*')
         .pipe(gulp.dest('build/assets/imgs'))
 } 
+gulp.task('app', gulp.parallel( appHTML, appCSS, appJS, appIMG))
+
+
 module.exports = { appHTML, appJS, appCSS, appIMG }
