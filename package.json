@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Mayconalbert/Projeto-js-av/issues"
   },
-  "homepage": "https://github.com/Mayconalbert/Projeto-js-av#readme"
+  "homepage": "https://github.com/Mayconalbert/Projeto-js-av#readme",
+  "dependencies": {
+    "jquery": "^4.0.0"
+  }
 }
