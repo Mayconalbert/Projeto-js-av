@@ -23,6 +23,13 @@
     <div id='animar'>Animar!</div>
 
     <script>        
-        // ...
+        $('button').click(e => {
+            const t = 500
+            // $('#animar').hide(t).show(t)
+            $('#animar').toggle(t).toggle(t)
+            $('#animar').fadeToggle(t).fadeToggle(t) 
+            // $('#animar').fadeOut(t).fadeIn(t)
+            $('#animar').slideUp(t).slideDown(t) // animasão fecha de baixo pra cima e de cima pra baixo 
+        })
     </script>
 </body>
