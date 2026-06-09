@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Mayconalbert/Projeto-js-av#readme",
   "dependencies": {
-    "jquery": "^4.0.0"
+    "jquery": "^4.0.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   }
 }
