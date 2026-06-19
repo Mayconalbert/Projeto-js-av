@@ -1,11 +1,19 @@
 {
-    "users": [{
-        "id": 1,
-        "name": "Arthur Oliveira",
-        "email": "Maiconsilvaalbert@gmail.com"
-    },{
-        "id": 2,
-        "name": "Maria julia da silva",
-        "email": "Mayconalbert188@gmail.com"
-    }]
+  "users": [
+    {
+      "id": 1,
+      "name": "Arthur Oliveira",
+      "email": "Maiconsilvaalbert@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Maria julia da silva",
+      "email": "Mayconalbert188@gmail.com"
+    },
+    {
+      "name": "Maicon",
+      "email": "maiconsilvaalbert@gmail.com",
+      "id": 3
+    }
+  ]
 }
