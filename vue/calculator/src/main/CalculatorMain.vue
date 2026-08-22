@@ -1,23 +1,23 @@
 <template>
   <div class="calculator">
     <CalculatorDisplay value="1000" />
-    <CalculatorButton label="AC" triple @onCalcButtonClink="clearMemory" />
-    <CalculatorButton label="/" operation @onClacButtonClink="setOperation" />
-    <CalculatorButton label="7" @onClacButtonClink="addDigit" />
-    <CalculatorButton label="8" />
-    <CalculatorButton label="9" />
-    <CalculatorButton label="*" operation />
-    <CalculatorButton label="4" />
-    <CalculatorButton label="5" />
-    <CalculatorButton label="6" />
+    <CalculatorButton label="AC" triple @onClick="clearMemory" />
+    <CalculatorButton label="/" operation @onClick="setOperation" />
+    <CalculatorButton label="7" @onClick="addDigit" />
+    <CalculatorButton label="8" @onClick="addDigit" />
+    <CalculatorButton label="9" @onClick="addDigit" />
+    <CalculatorButton label="*" operation @onClick="setOperation" />
+    <CalculatorButton label="4" @onClick="addDigit" />
+    <CalculatorButton label="5" @onClick="addDigit" />
+    <CalculatorButton label="6" @onClick="addDigit" />
     <CalculatorButton label="-" operation />
-    <CalculatorButton label="1" />
-    <CalculatorButton label="2" />
-    <CalculatorButton label="3" />
+    <CalculatorButton label="1" @onClick="addDigit" />
+    <CalculatorButton label="2" @onClick="addDigit" />
+    <CalculatorButton label="3" @onClick="addDigit" />
     <CalculatorButton label="+" operation />
-    <CalculatorButton label="0" double />
-    <CalculatorButton label="." />
-    <CalculatorButton label="=" operation />
+    <CalculatorButton label="0" double @onClick="addDigit"  />
+    <CalculatorButton label="." @onClick="addDigit" />
+    <CalculatorButton label="=" operation @onClick="setOperation" />
   </div>
 </template>
 
@@ -28,15 +28,15 @@ export default {
   components: { CalculatorButton, CalculatorDisplay },
   methods: {
     clearMemory() {
-      console.log("Limpar memória");
+      console.log('Limpar memória');
     },
     setOperation(operation) {
-      console.log("Operantion " + operation);
+      console.log('Operation ' + operation);
     },
     addDigit(n) {
-      console.log("Digito " + n);
+      console.log('Digito ' + n);
     },
-  },
+  }
 };
 </script>
 
