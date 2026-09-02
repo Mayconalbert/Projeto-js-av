@@ -11,5 +11,5 @@ insert into cidades (nome, area, estado_id)
 values ('Juaceiro do norte', 300, (select id from estado where sigla = 'CE'));
 
 
-select * from cidades; // mostra todos os dados da tabela da cidade
+select * from estado; // mostra todos os dados da tabela da cidade
 
