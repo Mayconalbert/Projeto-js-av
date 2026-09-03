@@ -16,7 +16,8 @@ select * from cidades; -- seleciona tudo que tem em cidades
 insert into empresa_unidades -- insere relacionamento vinculado qual empresa e em qual cidade e se é sede 
     (empresa_id, cidade_id, sede)
 
-values(1, 1, 1),
+values
+      (1, 1, 1),
       (1, 2, 0),
-      (2, 3, 1),
-      (3, 3, 1);  
+      (2, 3, 1);
+     
