@@ -9,5 +9,6 @@ create table if not exists empresas ( -- cria uma tabela empresas
 create table if not exists empresa_unidades ( -- cria uma tabela para fazer a união entre a tabela cidades e empresas
     empresa_id int unsigned not null, -- cria a coluna empresa_id
     cidade_id int unsigned not null, -- cria a coluna cidade_id
-    sede tinyint (1) not null -- se a empresa é a sede (0 falso 1 verdadeiro)
+    sede tinyint (1) not null, -- se a empresa é a sede (0 falso 1 verdadeiro)
+    primary key (empresa_id, cidade_id) -- Cria uma chave primária composta com as duas colunas 
 )
