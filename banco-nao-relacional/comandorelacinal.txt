@@ -12,3 +12,4 @@ db.estado.updateOne() -- atualizar apenas alguns campos de um documento específ
 db.estado.replaceOne() -- substitui o documento interio por um novo, mantendo apenas o mesmo id original
 db.estado.find() -- ele buscada e mostras todos os documentos da coleção
 db.estado.find().pretty() -- mostra documentos formatados e identados
+db.etado.findOne() -- Mostra o primeiro documento da coleção

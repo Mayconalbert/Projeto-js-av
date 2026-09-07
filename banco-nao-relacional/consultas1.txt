@@ -1,0 +1,150 @@
+db.estado.findOne({sigla: "RJ"}) -- inserir filtro passado para função mostra ducomento
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+db.estado.find({sigla: "RJ"}) passado para fução um filtro e mostra o documento sem identação 
+
+{ "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"), "nome" : "Rio de Janeiro", "sigla" : "RJ", "cidade" : [ { "nome" : "Ariquemes", "area" : 90939, "população" : 837490 } ] } 
+
+db.estado.find({sigla: "RJ"}).pretty() insere o filtro e mostra o docuemento identado com a função pretty para identar o documento passado
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+db.estado.find({$or: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty() 
+-- consulta com método find a consulra em estado.
+-- chamado o operador logico '$or' como chave de um objeto de filtragem
+-- o operador recebi um array de objetos, onde cada objeto define um criterio por atributo (sigla: "RJ", sigla: "AC")  
+-- seguida pelo método (pretty()) para formatação e identação do resultado
+{
+        "_id" : ObjectId("6a9b68cf38f2f26d7cf58b37"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "norte"
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+db.estado.find({população: {$exists: true}}).pretty() 
+-- consulta de elemento em estado qual contem população 
+-- consulta na coleção estado utilizando do método find()
+-- realiza dentro de buscar filtrando 'população' dentro do objeto do criderios  
+-- utiliza operador de elemento '$exists' com valor 'true' para retornar apenas o documentos que possuem esse compo preenchido
+-- seguindo pelo método pretty() para formatação e identação do json resultado 
+{
+        "_id" : ObjectId("6a9b69b538f2f26d7cf58b38"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "regão" : "Nordeste",
+        "população" : "38800933"
+}
+db.estado.find({população: {$exists: false}}).pretty()
+-- consulta na coleção 'estado' utizando operador de elemento para retornar documentção que não contem o campo população
+-- realiza dentro de atributo população dentro do objeto de criterios, buscando os documento onde está campo esta ausente
+-- seguindo pelo método pretty() para formatação estruturada a identação do json resultado
+{
+        "_id" : ObjectId("6a9b68cf38f2f26d7cf58b37"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "norte"
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                }
+        ]
+}
+db.estado.find().skip(1).limit(2).pretty()
+-- consulta coleção 'estado' retornado seus documentos e atributos com método find()
+-- o método skip(1) é utilizado para pular ou ingnorar o primeiro documento do resultado
+-- o método limit(2) retringe a quantidade máxima de documentos na consulta ao valor inserido
+-- pretty() formata e indenta o resultado json
+{
+        "_id" : ObjectId("6a9b69b538f2f26d7cf58b38"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "regão" : "Nordeste",
+        "população" : "38800933"
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+db.estado.count() -- executa a contagem de documentos presentes na coleção 'estado'
+4
+
+db.estado.find({sigla: "SP", {nome: 1, silga: 1, _id: 0}})
+-- consulta com método find() que a coleção de 'estado'
+-- consulta dentro de coleçao 'estado' filtrado pelos atributos sigla e o valor "SP"
+-- utiliza o segundo objeto para exibir apenas os atributos 'nome' e 'sigla', caso nao queira que o valor de id venha junto com resultado so colocar ele na chamada com valor 0 
+{ "nome" : "São Paulo" } resultado
+
+db.estado.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0})
+-- consulta dentro de coleçao 'estado' filtrado pelos atributos sigla e o valor "SP"
+-- utiliza o segundo objeto para exibir apenas as cidades do atributos que foi passado 'cidades.nome: 1 e _id: 0 nao sera mostrado
