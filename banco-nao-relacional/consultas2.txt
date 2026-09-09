@@ -23,3 +23,12 @@ db.estado.aggregate([
 ])
 resultados
 { "_id" : null, "populaçãoTotal" : 53168375 }
+
+db.estado.aggregate([
+    {$project: {população: {$sum: "$cidades.população"}, sigla: 1, _id: 0} },
+    {$group: {_id: null, populaçãoTotal: {$sum: "$população"}} },
+    {$project: {_id: 0, populaçãoTotal: 1 } }, // usando '$project' para mostra so o resultado da populaçãoTotal, como o resultado ta do lado de atributo não precida colocar o '$' 
+
+])
+resultado
+{ "populaçãoTotal" : 53168375 }
