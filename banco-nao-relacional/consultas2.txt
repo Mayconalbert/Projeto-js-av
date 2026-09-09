@@ -1,0 +1,25 @@
+db.estado.aggregate([  // aggregate faz uma consulta de filtrar, processar e transformar os documentos de coleção em resultados combinados 
+    {$project: {nome: 1, "cidades.nome": 1, _id: 0} } -- dentro de objeto tem '$' com sua adição de project modelar, projetar ou filtar quais campos devem ser passado adiante, 'nome', e 'cidads.nome', e esconde o '_id' (0)
+])
+{ "nome" : "Acre" }
+{ "nome" : "Alagoas" }
+{ "nome" : "Rio de Janeiro" }
+{ "nome" : "São Paulo", "cidades" : [ { "nome" : "Campinas" }, { "nome" : "Guarulhos" }, { "nome" : "Sorocaba" } ] }
+
+db.estado.aggregate([
+    {$project: {população: {$sum: "$cidades.população"}, sigla: 1, _id: 0} } 
+    // soma os atributo usando a função '$sum' para pegar os valores dentro dos atributos "$cidades.população". Esses valores ficam dentro de um array para ser somados pelo '$sum' e gerar novo valor, alem de mostrar 'sigla: 1' e esconde o _id (0) 
+])
+{ "sigla" : "AC", "população" : 0 }
+{ "sigla" : "AL", "população" : 0 }
+{ "sigla" : "RJ", "população" : 0 }
+{ "sigla" : "SP", "população" : 53168375 }
+
+db.estado.aggregate([
+    {$project: {população: {$sum: "$cidades.população"}, sigla: 1, _id: 0} },
+    {$group: {_id: null, populaçãoTotal: {$sum: "$população"}} },  
+    // o estágio $group com '_id: null' une todos os estados em um único grupo. 
+    // ele usa o '$sum' com o '$' para pegar os valores do campo 'população' criados no estágio anterior e somar tudo em um grande total.
+])
+resultados
+{ "_id" : null, "populaçãoTotal" : 53168375 }
