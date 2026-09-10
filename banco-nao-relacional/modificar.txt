@@ -1,0 +1,187 @@
+db.estado.update({ sigla: "SP"}, {$set: {população: 4789000}} ) // atualizar dados ou alterar, 'sigla: SP' filtra dados, '$set' adicinar e alterar campo
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 }) // mensagem de alteração
+> db.estado.find().pretty()
+{
+        "_id" : ObjectId("6a9b68cf38f2f26d7cf58b37"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "norte"
+}
+{
+        "_id" : ObjectId("6a9b69b538f2f26d7cf58b38"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "regão" : "Nordeste",
+        "população" : "38800933"
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                }
+        ],
+        "população" : 4789000 // resultado
+}
+
+
+db.estado.update({sigla: "AL"}, {$set: {cidades: [{nome: "Sergipe"}]}}) // Usando para adicionar cidade Sergipe com filtro 'AL', caso tivesse cidades adicionadas seriam substituidas 
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.estado.find().pretty()
+{
+        "_id" : ObjectId("6a9b68cf38f2f26d7cf58b37"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "norte"
+}
+{
+        "_id" : ObjectId("6a9b69b538f2f26d7cf58b38"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "regão" : "Nordeste",
+        "população" : "38800933",
+        "cidades" : [
+                {
+                        "nome" : "Sergipe" // cidade adicinada em alagoas 
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                }
+        ],
+        "população" : 4789000
+}
+
+
+db.estado.update({sigla: "SP"}, {$push: {cidades: {nome: "Santos", população: 434478000}}}) // operador '$push' ele adicionar no array filtrado mais um objeto dentro de documento
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.estado.find().pretty()
+{
+        "_id" : ObjectId("6a9b68cf38f2f26d7cf58b37"),
+        "nome" : "Acre",
+        "sigla" : "AC",
+        "região" : "norte"
+}
+{
+        "_id" : ObjectId("6a9b69b538f2f26d7cf58b38"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "regão" : "Nordeste",
+        "população" : "38800933",
+        "cidades" : [
+                {
+                        "nome" : "Sergipe"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                },
+                {
+                        "nome" : "Santos", // objeto adicionado
+                        "população" : 434478000
+                }
+        ],
+        "população" : 4789000
+}
+
+db.estado.find({população: {$exists: true}}, {_id: 0, nome: 1}) // busca os estados onde o campo 'população' existe e exibe na tela apenas o nome deles
+{ "nome" : "Alagoas" }
+{ "nome" : "São Paulo" }
