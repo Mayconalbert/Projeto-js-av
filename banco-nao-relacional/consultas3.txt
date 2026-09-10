@@ -1,0 +1,171 @@
+db.estado.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} }, // filtra o ducomento São Paulo, todas cidades que possuem 
+]).pretty()
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                }
+        ]
+}
+
+
+db.estado.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades" }, // transformar o array das cidades em documentos individuais, cidades virar um objeto
+]).pretty()
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                "nome" : "Campinas",
+                "area" : 2345.5,
+                "prefeito" : "João Marcos",
+                "população" : 24557754
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                "nome" : "Guarulhos",
+                "população" : 28372873
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                "nome" : "Sorocaba",
+                "distancia" : 362,
+                "população" : 237748
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                "nome" : "Campinas",
+                "area" : 2345.5,
+                "prefeito" : "João Marcos",
+                "população" : 24557754
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                "nome" : "Guarulhos",
+                "população" : 28372873
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                "nome" : "Sorocaba",
+                "distancia" : 362,
+                "população" : 237748
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                "nome" : "Campinas",
+                "area" : 2345.5,
+                "prefeito" : "João Marcos",
+                "população" : 24557754
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                "nome" : "Guarulhos",
+                "população" : 28372873
+        }
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                "nome" : "Sorocaba",
+                "distancia" : 362,
+                "população" : 237748
+        }
+}
+
+
+db.estado.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades" }, 
+    { $match: {"cidades.nome": "Sorocaba"}} // filtra novamente, agora que cada cidade é um documento separado 
+]).pretty()
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                "nome" : "Sorocaba",
+                "distancia" : 362,
+                "população" : 237748
+        }
+}
+
+
+db.estado.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades" }, 
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $project: {_id: "$cidades._id"}} // filtra so o id Sorocaba
+]).pretty()
+{ "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c") }
