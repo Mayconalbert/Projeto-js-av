@@ -1,0 +1,145 @@
+> db.estado.count() // conta quantos documentos existem na coleção
+4
+> db.estado.remove({sigla: 'AC'}) // ele remove o ducumento do estado do acre
+WriteResult({ "nRemoved" : 1 }) // confirmação que foi removido 1 
+> db.estado.count() // resultado que foi removido 
+3
+>
+ db.estado.find().pretty()
+{
+        "_id" : ObjectId("6a9b69b538f2f26d7cf58b38"),
+        "nome" : "Alagoas",
+        "sigla" : "AL",
+        "regão" : "Nordeste",
+        "população" : "38800933",
+        "cidades" : [
+                {
+                        "nome" : "Sergipe"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                },
+                {
+                        "nome" : "Santos",
+                        "população" : 434478000
+                }
+        ],
+        "população" : 4789000
+}
+
+db.estado.remove({população: {$exists: true}}, 1) //Sera removido documento estado que estiver população no registro, sera so um regitro apagado 1 
+// foi apagado o documento estado Alagoas
+{
+        "_id" : ObjectId("6a9b70db38f2f26d7cf58b39"),
+        "nome" : "Rio de Janeiro",
+        "sigla" : "RJ",
+        "cidade" : [
+                {
+                        "nome" : "Ariquemes",
+                        "area" : 90939,
+                        "população" : 837490
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                },
+                {
+                        "nome" : "Santos",
+                        "população" : 434478000
+                }
+        ],
+        "população" : 4789000
+}
+db.estado.update({sigla: 'RJ'}, {$set: {população: 150528}}) // adicinar população em estado de Rio de Janeiro 
+
+> db.estado.remove({população: {$lt: 200000}}) // ele removerar o estado que tiver população menor que 200000 pessoas, Rio de Janeiro foi removido da coleção 
+WriteResult({ "nRemoved" : 1 })
+> db.estado.find().pretty()
+{
+        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "nome" : "São Paulo",
+        "sigla" : "SP",
+        "região" : "Sudeste",
+        "cidades" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                },
+                {
+                        "nome" : "Santos",
+                        "população" : 150528
+                }
+        ],
+        "população" : 4789000
+}
