@@ -1,0 +1,94 @@
+db.empresas.aggregate([
+    {$match: {nome: "Bradesco"}}, filtra com 'match' so o documento Bradesco
+    {$lookup: { //  juntar os dados de outra coleção
+        from: "estado", // vai ate coleção de estado e busca os dados 
+        localField: "estadoID", // usar o id estado que esta gravado na empresa
+        foreignField: "_id", //  compara o id principal do estado
+        as: "NovoDados" cria um campo novo chamado 'NovoDados' e cola aqui
+
+    }},
+]).pretty()
+{
+        "_id" : ObjectId("6aa36ebd1edc66ebe001ce8c"),
+        "nome" : "Bradesco",
+        "estadoID" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "NovoDados" : [
+                {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                        "nome" : "São Paulo",
+                        "sigla" : "SP",
+                        "região" : "Sudeste",
+                        "cidades" : [
+                                {
+                                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                                        "nome" : "Campinas",
+                                        "area" : 2345.5,
+                                        "prefeito" : "João Marcos",
+                                        "população" : 24557754
+                                },
+                                {
+                                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                                        "nome" : "Guarulhos",
+                                        "população" : 28372873
+                                },
+                                {
+                                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                                        "nome" : "Sorocaba",
+                                        "distancia" : 362,
+                                        "população" : 237748
+                                },
+                                {
+                                        "nome" : "Santos",
+                                        "população" : 150528
+                                }
+                        ],
+                        "população" : 4789000
+                }
+        ]
+}
+db.empresas.aggregate([
+    {$match: {nome: "Bradesco"}}, filtra com 'match' so o documento Bradesco
+    {$lookup: { //  juntar os dados de outra coleção
+        from: "estado", // vai ate coleção de estado e busca os dados 
+        localField: "estadoID", // usar o id estado que esta gravado na empresa
+        foreignField: "_id", //  compara o id principal do estado
+        as: "NovoDados" cria um campo novo chamado 'NovoDados' e cola aqui
+    }},
+    {$unwind: "$Novodados"}, // o '$uniwind' desmancha o documento Novodados que é um array para fazer um objeto para deixar o resultado mais direto
+]).pretty()
+{
+        "_id" : ObjectId("6aa36ebd1edc66ebe001ce8c"),
+        "nome" : "Bradesco",
+        "estadoID" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+        "NovoDados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : [
+                        {
+                                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                                "nome" : "Campinas",
+                                "area" : 2345.5,
+                                "prefeito" : "João Marcos",
+                                "população" : 24557754
+                        },
+                        {
+                                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                                "nome" : "Guarulhos",
+                                "população" : 28372873
+                        },
+                        {
+                                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                                "nome" : "Sorocaba",
+                                "distancia" : 362,
+                                "população" : 237748
+                        },
+                        {
+                                "nome" : "Santos",
+                                "população" : 150528
+                        }
+                ],
+                "população" : 4789000
+        }
+}
