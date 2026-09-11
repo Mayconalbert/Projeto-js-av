@@ -1,0 +1,23 @@
+> db.empresas.insert({nome: "Bradesco", estadoID: ObjectId("6a9b840b38f2f26d7cf58b3d")}) // inserir um documentos empresa bradesco com relaciomento id estado São Paulo
+WriteResult({ "nInserted" : 1 }) // confirmação que documento de empresa foi inserido
+> db.empresas.find().pretty() // resultado
+{
+        "_id" : ObjectId("6aa36ebd1edc66ebe001ce8c"),
+        "nome" : "Bradesco",
+        "estadoID" : ObjectId("6a9b840b38f2f26d7cf58b3d")
+}
+
+
+> db.empresas.insert({ nome: "Vale", cidadeId: ObjectId("6a9b840b38f2f26d7cf58b3c")}) // inserir um novo documento empresa com id cidade sorocaba
+WriteResult({ "nInserted" : 1 }) // confirmação que documento cidade foi inserido
+> db.empresas.find().pretty() // resultado
+{
+        "_id" : ObjectId("6aa36ebd1edc66ebe001ce8c"),
+        "nome" : "Bradesco",
+        "estadoID" : ObjectId("6a9b840b38f2f26d7cf58b3d")
+}
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c")
+}
