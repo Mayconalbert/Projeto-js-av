@@ -92,3 +92,167 @@ db.empresas.aggregate([
                 "população" : 4789000
         }
 }
+
+
+db.empresas.aggregate([
+    {$match: {nome: "Vale"}}, // filtra documento vale
+    {$lookup: {  // junda os dados de outra coleção
+        from: "estado", // busca os dados
+        localField: "cidadeId", // traz o id cidades principal
+        foreignField: "cidades._id", compara o id cidades
+        as: "estados", cria uma novo documento com o nome estados
+    }},
+    {$unwind: "$estados"}, desmancha o documento estados e coloca tudo dentro de um objeto para ficar mais facil
+]).pretty()
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+        "estados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : [
+                        {
+                                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                                "nome" : "Campinas",
+                                "area" : 2345.5,
+                                "prefeito" : "João Marcos",
+                                "população" : 24557754
+                        },
+                        {
+                                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                                "nome" : "Guarulhos",
+                                "população" : 28372873
+                        },
+                        {
+                                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                                "nome" : "Sorocaba",
+                                "distancia" : 362,
+                                "população" : 237748
+                        },
+                        {
+                                "nome" : "Santos",
+                                "população" : 150528
+                        }
+                ],
+                "população" : 4789000
+        }
+}
+
+
+db.empresas.aggregate([
+     {$match: {nome: "Vale"}},
+     {$lookup: {
+         from: "estado",
+         localField: "cidadeId",
+         foreignField: "cidades._id",
+         as: "estados",
+     }},
+     {$unwind: "$estados"},
+     {$unwind: "$estados.cidades"} // separar cidades por documentos
+]).pretty()
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+        "estados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3a"),
+                        "nome" : "Campinas",
+                        "area" : 2345.5,
+                        "prefeito" : "João Marcos",
+                        "população" : 24557754
+                },
+                "população" : 4789000
+        }
+}
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+        "estados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3b"),
+                        "nome" : "Guarulhos",
+                        "população" : 28372873
+                },
+                "população" : 4789000
+        }
+}
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+        "estados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                },
+                "população" : 4789000
+        }
+}
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+        "estados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : {
+                        "nome" : "Santos",
+                        "população" : 150528
+                },
+                "população" : 4789000
+        }
+}
+
+db.empresas.aggregate([
+     {$match: {nome: "Vale"}},
+     {$lookup: {
+         from: "estado",
+         localField: "cidadeId",
+         foreignField: "cidades._id",
+         as: "estados",
+     }},
+     {$unwind: "$estados"},
+     {$unwind: "$estados.cidades"}, // separar cada cidade da lista em um documentos individual  
+     {$addFields: {mesmaCidade: {$cmp: ["$estados.cidades._id", "$cidadeId"] } } }, // cria um campo 'mesmoCidade', que compara os dois valores ids e retonar '0 igual', '1 maior' e '-1 menor'
+     {$match: { mesmaCidade: 0}}, filtra e traz apenas o documentos onde o resultado comparação for igual a 0 (ou seja, são iguais)
+]).pretty()
+{
+        "_id" : ObjectId("6aa374c21edc66ebe001ce8d"),
+        "nome" : "Vale",
+        "cidadeId" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+        "estados" : {
+                "_id" : ObjectId("6a9b840b38f2f26d7cf58b3d"),
+                "nome" : "São Paulo",
+                "sigla" : "SP",
+                "região" : "Sudeste",
+                "cidades" : {
+                        "_id" : ObjectId("6a9b840b38f2f26d7cf58b3c"),
+                        "nome" : "Sorocaba",
+                        "distancia" : 362,
+                        "população" : 237748
+                },
+                "população" : 4789000
+        },
+        "mesmaCidade" : 0
+}
